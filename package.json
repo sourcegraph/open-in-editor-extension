@@ -2,13 +2,23 @@
   "$schema": "https://raw.githubusercontent.com/sourcegraph/sourcegraph/master/shared/src/schema/extension.schema.json",
   "name": "open-in-editor",
   "description": "Open the current file in your editor of choice",
-  "publisher": "Sourcegraph",
+  "publisher": "sourcegraph",
   "activationEvents": [
     "*"
   ],
   "wip": true,
-  "categories": [],
-  "tags": [],
+  "categories": [
+    "Other"
+  ],
+  "tags": [
+    "vscode",
+    "intellij",
+    "idea",
+    "jetbrains",
+    "sublime",
+    "editor",
+    "open"
+  ],
   "contributes": {
     "actions": [
       {
@@ -57,6 +67,10 @@
     }
   },
   "version": "0.0.0-DEVELOPMENT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sourcegraph/open-in-editor-extension"
+  },
   "license": "Apache-2.0",
   "main": "dist/open-in-editor.js",
   "scripts": {

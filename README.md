@@ -14,7 +14,7 @@ Otherwise, follow instructions here to publish it privately: https://docs.source
 
 - `openineditor.editor`: The editor to use. Supported editors are:
   - `vscode` (Visual Studio Code)
-  - `idea` (IntelliJ IDEA)
+  - `idea` (JetBrains IntelliJ IDEA)
   - `sublime` (Sublime Text, requires a URL handler installed such as [this one for macOS](https://github.com/inopinatus/sublime_url))
   - `custom` (requires also setting `openineditor.customUrlPattern`)
 - `openineditor.basePath`: The base path where your git repos live. This extension requires all git repos to be cloned under this path with their original names.
