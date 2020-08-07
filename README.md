@@ -2,7 +2,7 @@
 
 Adds a button at the top of files in both Sourcegraph app and code hosts like GitHub (when the Sourcegraph browser extension is installed) that will open the current file in your editor of choice. 
 
-![Screenshot](https://user-images.githubusercontent.com/206864/89689480-57189680-d8b9-11ea-8f5a-e914d3ed4a3d.png)
+![Screenshot](https://user-images.githubusercontent.com/206864/89693503-774d5300-d8c3-11ea-9582-23e768ff5ef7.png)
 
 ## Installing
 
