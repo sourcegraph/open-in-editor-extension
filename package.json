@@ -3,10 +3,11 @@
   "name": "open-in-editor",
   "description": "Open the current file in your editor of choice",
   "publisher": "sourcegraph",
+  "icon": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTgsMTJIMTZWMTRIOFYxMk0xMCwyMEg2VjRIMTNWOUgxOFYxMi4xTDIwLDEwLjFWOEwxNCwySDZBMiwyIDAgMCwwIDQsNFYyMEEyLDIgMCAwLDAgNiwyMkgxMFYyME04LDE4SDEyLjFMMTMsMTcuMVYxNkg4VjE4TTIwLjIsMTNDMjAuMywxMyAyMC41LDEzLjEgMjAuNiwxMy4yTDIxLjksMTQuNUMyMi4xLDE0LjcgMjIuMSwxNS4xIDIxLjksMTUuM0wyMC45LDE2LjNMMTguOCwxNC4yTDE5LjgsMTMuMkMxOS45LDEzLjEgMjAsMTMgMjAuMiwxM00yMC4yLDE2LjlMMTQuMSwyM0gxMlYyMC45TDE4LjEsMTQuOEwyMC4yLDE2LjlaIiBmaWxsPSIjYTJiMGNkIiAvPjwvc3ZnPg==",
   "activationEvents": [
     "*"
   ],
-  "wip": true,
+  "wip": false,
   "categories": [
     "Other"
   ],
@@ -31,7 +32,7 @@
         "category": "Open in editor",
         "actionItem": {
           "description": "Open file in editor",
-          "label": "Open in editor"
+          "iconURL": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTgsMTJIMTZWMTRIOFYxMk0xMCwyMEg2VjRIMTNWOUgxOFYxMi4xTDIwLDEwLjFWOEwxNCwySDZBMiwyIDAgMCwwIDQsNFYyMEEyLDIgMCAwLDAgNiwyMkgxMFYyME04LDE4SDEyLjFMMTMsMTcuMVYxNkg4VjE4TTIwLjIsMTNDMjAuMywxMyAyMC41LDEzLjEgMjAuNiwxMy4yTDIxLjksMTQuNUMyMi4xLDE0LjcgMjIuMSwxNS4xIDIxLjksMTUuM0wyMC45LDE2LjNMMTguOCwxNC4yTDE5LjgsMTMuMkMxOS45LDEzLjEgMjAsMTMgMjAuMiwxM00yMC4yLDE2LjlMMTQuMSwyM0gxMlYyMC45TDE4LjEsMTQuOEwyMC4yLDE2LjlaIiBmaWxsPSIjYTJiMGNkIiAvPjwvc3ZnPg=="
         }
       }
     ],
