@@ -20,32 +20,33 @@ function getOpenUrl(textDocumentUri: URL): URL {
     const basePath: unknown = sourcegraph.configuration.get().value['openineditor.basePath'] as unknown
     const editor: unknown = sourcegraph.configuration.get().value['openineditor.editor'] as unknown
     const customUrlPattern: unknown = sourcegraph.configuration.get().value['openineditor.customUrlPattern'] as unknown
+    const learnMorePath = new URL('/extensions/sourcegraph/open-in-editor', sourcegraph.internal.sourcegraphURL.href).href
 
     if (typeof basePath !== 'string') {
         throw new TypeError(
-            'Setting `openineditor.basePath` must be set in your [user settings](/user/settings) to open files.'
+            `Add \`openineditor.basePath\` to your user settings to open files in the editor. [Learn more](${learnMorePath})`
         )
     }
     if (!path.isAbsolute(basePath)) {
         throw new Error(
-            `\`openineditor.basePath\` value \`${basePath}\` is not an absolute path. Please correct the error in your [user settings](/user/settings).`
+            `\`openineditor.basePath\` value \`${basePath}\` is not an absolute path. Please correct the error in your [user settings](${new URL('/user/settings', sourcegraph.internal.sourcegraphURL.href).href}).`
         )
     }
 
     if (typeof editor !== 'string') {
         throw new TypeError(
-            'Setting `openineditor.editor` must be set in your [user settings](/user/settings) to open files.'
+            `Add \`openineditor.editor\` to your user settings to open files. [Learn more](${learnMorePath})`
         )
     }
     if (!Object.prototype.hasOwnProperty.call(supportedEditors, editor)) {
         throw new TypeError(
-            'Setting `openineditor.editor` must be set to a valid value in your [user settings](/user/settings) to open files. Supported editors: ' +
+            `Setting \`openineditor.editor\` must be set to a valid value in your [user settings](${new URL('/user/settings', sourcegraph.internal.sourcegraphURL.href).href}) to open files. Supported editors: ` +
             Object.keys(supportedEditors).join(',')
         )
     }
     if (editor === 'custom' && typeof customUrlPattern !== 'string') {
         throw new TypeError(
-            'Setting `openineditor.customUrlPattern` must be set for custom editor in your [user settings](/user/settings) to open files.'
+            `Add \`openineditor.customUrlPattern\` to your user settings for custom editor to open files. [Learn more](${learnMorePath})`
         )
     }
 
