@@ -4,12 +4,6 @@ Adds a button at the top of files in both Sourcegraph app and code hosts like Gi
 
 ![Screenshot](https://user-images.githubusercontent.com/6304497/94799074-dcfd1d80-03e2-11eb-86fc-e55e03380154.png)
 
-## Installing
-
-For Sourcegraph.com, it can be enabled here: https://sourcegraph.com/extensions/sourcegraph/open-in-editor
-
-Otherwise, follow instructions here to publish it privately: https://docs.sourcegraph.com/extensions/authoring/publishing
-
 ## Settings
 
 - Add `openineditor.editor` to your user settings to open files in the editor. Copy one of the following lines depending on the editor you would like to use. This extension only supports opening in one editor at a time. Supported editors:
