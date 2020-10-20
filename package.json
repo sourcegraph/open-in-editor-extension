@@ -54,7 +54,8 @@
       "properties": {
         "openineditor.editor": {
           "description": "Editor config to use. Supported: 'vscode', 'idea', 'sublime', 'custom'. If 'custom', also set 'openindeditor.customUrlPattern'",
-          "type": "string"
+          "type": "string",
+          "enum": ["vscode", "idea", "sublime", "custom"]
         },
         "openineditor.customUrlPattern": {
           "description": "The custom URL pattern for your editor of choice. Use placeholders %file, %line, %col.",
