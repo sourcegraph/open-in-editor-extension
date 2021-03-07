@@ -12,4 +12,13 @@ Adds a button at the top of files in both Sourcegraph app and code hosts like Gi
   - `sublime` (Sublime Text, requires a URL handler installed such as [this one for macOS](https://github.com/inopinatus/sublime_url))
   - `custom` (requires also setting `openineditor.customUrlPattern`): `"openineditor.editor": "custom"`
 - `openineditor.basePath`: The absolute path on your computer where your git repositories live. This extension requires all git repos to be already cloned under this path with their original names. `"/Users/yourusername/src"` is a valid absolute path, while `"~/src"` is not.
-- `openineditor.customUrlPattern`: If you set `openineditor.editor` to `custom`, this must be set. Use placeholders `%file`, `%line`, and `%col` to mark where the file path, line number, and column number must be replaced. Example URL for IntelliJ IDEA: `idea://open?file=%file&line=%line&column=%col`
+- `openineditor.customUrlPattern`: If you set `openineditor.editor` to `custom`, this must be set. Use placeholders `%host`, `%repo`, `%filePath`, `%file`, `%line`, and `%col` to mark where the file path, line number, and column number must be replaced. Example URL for IntelliJ IDEA: `idea://open?file=%file&line=%line&column=%col`
+
+| Placeholder | Example                                                    |
+| ----------- | ---------------------------------------------------------- |
+| %host       | github.com                                                 |
+| %repo       | sourcegraph/open-in-editor-extension                       |
+| %filePath   | src/open-in-editor.ts                                      |
+| %file       | sourcegraph/open-in-editor-extension/src/open-in-editor.ts |
+| %line       | 1                                                          |
+| %col        | 1                                                          |
