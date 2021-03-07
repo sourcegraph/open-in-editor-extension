@@ -50,11 +50,9 @@ function getOpenUrl(textDocumentUri: URL): URL {
         )
     }
 
-    const rawRepoName = decodeURIComponent(textDocumentUri.hostname + textDocumentUri.pathname)
-    // TODO support different folder layouts, e.g. repo nested under owner name
-    const repoBaseName = rawRepoName.split('/').pop() ?? ''
-    const relativePath = decodeURIComponent(textDocumentUri.hash.slice('#'.length))
-    const absolutePath = path.join(basePath, repoBaseName, relativePath)
+    const codeHost = textDocumentUri.host;
+    const repoName = textDocumentUri.pathname.replace(/^\//, '').replace(/\/$/, '') ?? ''
+    const filePath = decodeURIComponent(textDocumentUri.hash.slice('#'.length))
     let line = 1;
     let column = 1;
 
@@ -69,7 +67,10 @@ function getOpenUrl(textDocumentUri: URL): URL {
     }
 
     const urlPattern = getEditorUrlPattern(editor, customUrlPattern as string)
-        .replace('%file', absolutePath)
+        .replace('%host', codeHost)
+        .replace('%repo', repoName)
+        .replace('%filePath', filePath)
+        .replace('%file', path.join(basePath, repoName, filePath))
         .replace('%line', `${line}`)
         .replace('%col', `${column}`)
 
