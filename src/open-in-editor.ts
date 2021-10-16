@@ -20,6 +20,7 @@ function getOpenUrl(textDocumentUri: URL): URL {
     const basePath: unknown = sourcegraph.configuration.get().value['openineditor.basePath'] as unknown
     const editor: unknown = sourcegraph.configuration.get().value['openineditor.editor'] as unknown
     const customUrlPattern: unknown = sourcegraph.configuration.get().value['openineditor.customUrlPattern'] as unknown
+    const replacements: Record<string, string> = sourcegraph.configuration.get().value['openineditor.replacements'] as Record<string, string>
     const learnMorePath = new URL('/extensions/sourcegraph/open-in-editor', sourcegraph.internal.sourcegraphURL.href).href
 
     if (typeof basePath !== 'string') {
@@ -68,14 +69,22 @@ function getOpenUrl(textDocumentUri: URL): URL {
         }
     }
 
-    const urlPattern = getEditorUrlPattern(editor, customUrlPattern as string)
+    let urlPattern = getEditorUrlPattern(editor, customUrlPattern as string)
         .replace('%file', absolutePath)
         .replace('%line', `${line}`)
         .replace('%col', `${column}`)
 
+    if(replacements) {
+        for (const replacement in replacements) {
+            if (typeof replacement === 'string') {
+                const POST_REGEX = new RegExp(replacement);
+                urlPattern = urlPattern.replace(POST_REGEX, replacements[replacement])
+            }
+        }
+    }
+
     const openUrl = new URL(urlPattern)
 
-    console.log(openUrl.href)
     return openUrl
 }
 

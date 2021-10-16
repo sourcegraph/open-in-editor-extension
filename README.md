@@ -13,6 +13,7 @@ Adds a button to the Sourcegraph's extension panel and at the top of files in co
   - `custom` (requires also setting `openineditor.customUrlPattern`): `"openineditor.editor": "custom"`
 - `openineditor.basePath`: The absolute path on your computer where your git repositories live. This extension requires all git repos to be already cloned under this path with their original names. `"/Users/yourusername/src"` is a valid absolute path, while `"~/src"` is not.
 - `openineditor.customUrlPattern`: If you set `openineditor.editor` to `custom`, this must be set. Use placeholders `%file`, `%line`, and `%col` to mark where the file path, line number, and column number must be replaced. Example URL for IntelliJ IDEA: `idea://open?file=%file&line=%line&column=%col`
+- `openineditor.replacements`: Takes object, where each key is replaced by value in the final url. The key can be a string or a RegExp, and the value must be a string. For example, `"openineditor.replacements": {"(?<=Documents\/)(.*[\\\/])": "sourcegraph-$1"},` will add `sourcegraph-` in front of the string that matches the `(?<=Documents\/)(.*[\\\/])` RegExp pattern, which is the string after `Documents/` and before the final slash: `vscode://file//Users/USERNAME/Documents/REPO-NAME/package.json` => `vscode://file//Users/USERNAME/Documents/sourcegraph-REPO-NAME/package.json`
 
 ## Examples
 
