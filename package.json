@@ -100,6 +100,6 @@
     "mkdirp": "^1.0.4",
     "parcel-bundler": "^1.12.4",
     "sourcegraph": "^24.7.0",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.10"
   }
 }
