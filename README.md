@@ -112,6 +112,8 @@ To open repository files in your Documents directory:
 
 ### Replacement Example 1: Open Remote folders with VS Code on Mac by removing file names
 
+**This requires VS Code extension [Remote Development by Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) to work.**
+
 To open directory where the repository files reside in a remote server:
 
 ```json
@@ -121,8 +123,10 @@ To open directory where the repository files reside in a remote server:
   },
   "openineditor.basePath": "/Users/USERNAME/Documents/",
   "openineditor.editor" : "custom",
-  "openineditor.customUrlPattern": "vscode://vscode-remote/ssh-remote+REMOTEUSER@000.000.00.000%file",
-  "openineditor.replacements": {"\/[^\/]*$": ""}, //removes file name as the vscode-remote protocol handler only supports directory-opening
+  // Replaces USER@HOSTNAME as appropriate.
+  "openineditor.customUrlPattern": "vscode://vscode-remote/ssh-remote+USER@HOSTNAME%file",
+  //removes file name as the vscode-remote protocol handler only supports directory-opening
+  "openineditor.replacements": {"\/[^\/]*$": ""}, 
 }
 ```
 
@@ -154,6 +158,7 @@ Removes `sourcegraph-` from the final URL.
   "openineditor.basePath": "/Users/USERNAME/Documents/",
   "openineditor.editor" : "vscode",
   "openineditor.replacements": {"sourcegraph-": ""},
+  // vscode://file//Users/USERNAME/Documents/sourcegraph-REPO-NAME/package.json => vscode://file//Users/USERNAME/Documents/REPO-NAME/package.json
 }
 ```
 
