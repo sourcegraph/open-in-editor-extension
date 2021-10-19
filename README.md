@@ -13,6 +13,7 @@ Adds a button to the Sourcegraph's extension panel and at the top of files in co
   - `custom` (requires also setting `openineditor.customUrlPattern`): `"openineditor.editor": "custom"`
 - `openineditor.basePath`: The absolute path on your computer where your git repositories live. This extension requires all git repos to be already cloned under this path with their original names. `"/Users/yourusername/src"` is a valid absolute path, while `"~/src"` is not.
 - `openineditor.customUrlPattern`: If you set `openineditor.editor` to `custom`, this must be set. Use placeholders `%file`, `%line`, and `%col` to mark where the file path, line number, and column number must be replaced. Example URL for IntelliJ IDEA: `idea://open?file=%file&line=%line&column=%col`
+- `openineditor.replacements`: Takes object, where each key is replaced by value in the final url. The key can be a string or a RegExp, and the value must be a string. For example, `"openineditor.replacements": {"(?<=Documents\/)(.*[\\\/])": "sourcegraph-$1"},` will add `sourcegraph-` in front of the string that matches the `(?<=Documents\/)(.*[\\\/])` RegExp pattern, which is the string after `Documents/` and before the final slash: `vscode://file//Users/USERNAME/Documents/REPO-NAME/package.json` => `vscode://file//Users/USERNAME/Documents/sourcegraph-REPO-NAME/package.json`
 
 ## Examples
 
@@ -108,6 +109,59 @@ To open repository files in your Documents directory:
   "openineditor.customUrlPattern" : "vscode-insiders://file%file&line=%line&column=%col"
 }
 ```
+
+### Replacement Example 1: Open Remote folders with VS Code on Mac by removing file names
+
+**This requires VS Code extension [Remote Development by Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) to work.**
+
+To open directory where the repository files reside in a remote server:
+
+```json
+{
+  "extensions": {
+    "sourcegraph/open-in-editor": true,
+  },
+  "openineditor.basePath": "/Users/USERNAME/Documents/",
+  "openineditor.editor" : "custom",
+  // Replaces USER@HOSTNAME as appropriate.
+  "openineditor.customUrlPattern": "vscode://vscode-remote/ssh-remote+USER@HOSTNAME%file",
+  //removes file name as the vscode-remote protocol handler only supports directory-opening
+  "openineditor.replacements": {"\/[^\/]*$": ""}, 
+}
+```
+
+### Replacement Example 2: Add string to final file path
+
+Adds `sourcegraph-` in front of the string that matches the `(?<=Documents\/)(.*[\\\/])` RegExp pattern, which is the string after `Documents/` and before the final slash.
+
+```json
+{
+  "extensions": {
+    "sourcegraph/open-in-editor": true,
+  },
+  "openineditor.basePath": "/Users/USERNAME/Documents/",
+  "openineditor.editor" : "vscode",
+  "openineditor.replacements": {"(?<=Documents\/)(.*[\\\/])": "sourcegraph-$1"},
+  // vscode://file//Users/USERNAME/Documents/REPO-NAME/package.json => vscode://file//Users/USERNAME/Documents/sourcegraph-REPO-NAME/package.json
+}
+```
+
+### Replacement Example 3: Remove string from the final file path
+
+Removes `sourcegraph-` from the final URL.
+
+```json
+{
+  "extensions": {
+    "sourcegraph/open-in-editor": true,
+  },
+  "openineditor.basePath": "/Users/USERNAME/Documents/",
+  "openineditor.editor" : "vscode",
+  "openineditor.replacements": {"sourcegraph-": ""},
+  // vscode://file//Users/USERNAME/Documents/sourcegraph-REPO-NAME/package.json => vscode://file//Users/USERNAME/Documents/REPO-NAME/package.json
+}
+```
+
 
 ## Development
 
