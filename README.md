@@ -110,6 +110,26 @@ To open repository files in your Documents directory:
 }
 ```
 
+### VS Code with different base paths configured for different platforms
+
+Uses the assigned path for the detected Operating System when available:
+
+```json
+{
+  "extensions": {
+    "sourcegraph/open-in-editor": true
+  },
+  "openineditor.osPaths": {
+    "windows": "/C:/Users/USERNAME/folder/",
+    "mac": "/Users/USERNAME/folder/",
+    "linux": "/home/USERNAME/folder/"
+  },
+  "openineditor.editor" : "vscode",
+  // basePath is required as the default path when no operation system is detected
+  "openineditor.basePath": "/Users/USERNAME/Documents/",
+}
+```
+
 ### Replacement Example 1: Open Remote folders with VS Code on Mac by removing file names
 
 **This requires VS Code extension [Remote Development by Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) to work.**

@@ -17,12 +17,23 @@ const supportedEditors: {[editor: string]: {urlPattern: string}} = {
 }
 
 function getOpenUrl(textDocumentUri: URL): URL {
-    const basePath: unknown = sourcegraph.configuration.get().value['openineditor.basePath'] as unknown
+    let basePath: unknown = sourcegraph.configuration.get().value['openineditor.basePath'] as unknown
     const editor: unknown = sourcegraph.configuration.get().value['openineditor.editor'] as unknown
+    const osPaths: Record<string, string> = sourcegraph.configuration.get().value['openineditor.osPaths'] as Record<string, string>
     const customUrlPattern: unknown = sourcegraph.configuration.get().value['openineditor.customUrlPattern'] as unknown
     const replacements: Record<string, string> = sourcegraph.configuration.get().value['openineditor.replacements'] as Record<string, string>
     const learnMorePath = new URL('/extensions/sourcegraph/open-in-editor', sourcegraph.internal.sourcegraphURL.href).href
 
+    // check platform and use assigned path when available;
+    if(osPaths){
+        if (navigator.userAgent.includes('Win') && osPaths.windows) {
+            basePath = osPaths.windows;
+        } else if (navigator.userAgent.includes('Mac') && osPaths.mac) {
+            basePath = osPaths.mac;
+        } else if (navigator.userAgent.includes('Linux') && osPaths.linux) {
+            basePath = osPaths.linux;
+        }
+    }
     if (typeof basePath !== 'string') {
         throw new TypeError(
             `Add \`openineditor.basePath\` to your user settings to open files in the editor. [Learn more](${learnMorePath})`
