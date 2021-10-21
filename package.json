@@ -64,6 +64,14 @@
         "openineditor.basePath": {
           "description": "The file path on the machine to the folder that is expected to contain all repositories.",
           "type": "string"
+        },
+        "openineditor.osPaths": {
+          "description": "The file path on each platform to the folder that is expected to contain all repositories.",
+          "type": "object"
+        },
+        "openineditor.replacements": {
+          "description": "Take key-value pairs where each key is replaced by its value in the final url. The key can be a string or a RegExp pattern, and the value must be a string. The final path must be a valid path on the machine to the folder that is expected to contain all repositories.",
+          "type": "object"
         }
       }
     }

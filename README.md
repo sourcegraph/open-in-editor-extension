@@ -4,15 +4,18 @@ Adds a button to the Sourcegraph's extension panel and at the top of files in co
 
 ## Settings
 
-**This extension requires all git repos to be already cloned under the base path with their original names.**
+****This extension requires all git repos to be cloned and available on your local machine.**
 
 - Add `openineditor.editor` to your user settings to open files in the editor. Copy one of the following lines depending on the editor you would like to use. This extension only supports opening in one editor at a time. Supported editors:
   - `vscode` (Visual Studio Code): `"openineditor.editor": "vscode"`
   - `idea` (JetBrains IntelliJ IDEA): `"openineditor.editor": "idea"`
   - `sublime` (Sublime Text, requires a URL handler installed such as [this one for macOS](https://github.com/inopinatus/sublime_url))
   - `custom` (requires also setting `openineditor.customUrlPattern`): `"openineditor.editor": "custom"`
+
 - `openineditor.basePath`: The absolute path on your computer where your git repositories live. This extension requires all git repos to be already cloned under this path with their original names. `"/Users/yourusername/src"` is a valid absolute path, while `"~/src"` is not.
+
 - `openineditor.customUrlPattern`: If you set `openineditor.editor` to `custom`, this must be set. Use placeholders `%file`, `%line`, and `%col` to mark where the file path, line number, and column number must be replaced. Example URL for IntelliJ IDEA: `idea://open?file=%file&line=%line&column=%col`
+
 - `openineditor.replacements`: Takes object, where each key is replaced by value in the final url. The key can be a string or a RegExp, and the value must be a string. For example, `"openineditor.replacements": {"(?<=Documents\/)(.*[\\\/])": "sourcegraph-$1"},` will add `sourcegraph-` in front of the string that matches the `(?<=Documents\/)(.*[\\\/])` RegExp pattern, which is the string after `Documents/` and before the final slash: `vscode://file//Users/USERNAME/Documents/REPO-NAME/package.json` => `vscode://file//Users/USERNAME/Documents/sourcegraph-REPO-NAME/package.json`
 
 ## Examples
@@ -107,6 +110,26 @@ To open repository files in your Documents directory:
   "openineditor.basePath": "/Users/USERNAME/Documents/",
   "openineditor.editor" : "custom",
   "openineditor.customUrlPattern" : "vscode-insiders://file%file&line=%line&column=%col"
+}
+```
+
+### VS Code with different base paths configured for different platforms
+
+Uses the assigned path for the detected Operating System when available:
+
+```json
+{
+  "extensions": {
+    "sourcegraph/open-in-editor": true
+  },
+  "openineditor.osPaths": {
+    "windows": "/C:/Users/USERNAME/folder/",
+    "mac": "/Users/USERNAME/folder/",
+    "linux": "/home/USERNAME/folder/"
+  },
+  "openineditor.editor" : "vscode",
+  // basePath is required as the default path when no Operating System is detected
+  "openineditor.basePath": "/Users/USERNAME/Documents/",
 }
 ```
 
