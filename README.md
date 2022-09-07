@@ -5,11 +5,11 @@
 **Sourcegraph extensions have been deprecated with the September 2022 Sourcegraph
 release. [Learn more](https://docs.sourcegraph.com/extensions/deprecation).**
 
-Starting with Sourcegraph 4.0, “Open in Editor” is a core part of the product. 🎉 Installing this extension is not needed and is not possible with 4.0+. For this reason, this extension is no longer in development.
+Starting with the September 2022 release of Sourcegraph, “Open in Editor” is a core part of the product.
 
-The repo and the old docs below are kept here to support older Sourcegraph versions.
+The repo and the docs below are kept to support older Sourcegraph versions.
 
-# Archive
+## Description
 
 Adds a button to the Sourcegraph's extension panel and at the top of files in code hosts like GitHub (when the Sourcegraph browser extension is installed) that will open the current file in your editor of choice.
 
